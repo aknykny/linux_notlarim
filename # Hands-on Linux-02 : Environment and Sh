@@ -48,12 +48,16 @@ env
 ```
 ​
 - Difference between shell and environment variables. 
+Create a user, name it "mike", switch to mike, check the environment and shell variables.
 ​
 ```bash
 export PRO=TECHPRO
 sudo su
-useradd mike # useradd is legacy command to create a user then it does not support to create the home-directory for the user etc.
-passwd mike # give mike any password.
+useradd mike 
+# useradd is legacy command to create a user then it does not support to 
+create the home-directory for the user etc.
+passwd mike 
+# give mike any password.
 exit
 su mike
 env | grep PRO
