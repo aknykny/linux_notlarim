@@ -1,0 +1,76 @@
+techpro@UbuntuVM:/$ history
+    1  sudo su
+    2  sudo su -
+    3  man who
+    4  who
+    5  clear
+    6  w
+    7  man w
+    8  w
+    9  id
+   10  id root
+   11  sudo su
+   12  clear
+   13  sudo groupadd linux
+   14  sudo groupadd aws
+   15  sudo groupadd pyhton
+   16  cat /etc/group
+   17  clear
+   18  sudo groupmod -n ubuntu-linux linux
+   19  cat /etc/group
+   20  clear
+   21  cat /etc/group |grep linux
+   22  sudo usermod -a -G ubuntu-linux ali
+   23  cat /etc/group
+   24  clear
+   25  cat /etc/group | grep ali
+   26  sudo usermod -a -G aws ali
+   27  cat /etc/group | grep ali
+   28  sudo groupdel python
+   29  cat /etc/group | grep pyh
+   30  sudo groupdel pyhton
+   31  cat /etc/group | grep pyh
+   32  sudo gpasswd -a techpro aws
+   33  clear
+   34  cat /etc/group | grep ali
+   35  sudo gpasswd -d ali aws
+   36  cat /etc/group | grep ali
+   37  clear
+   38  env
+   39  ls
+   40  clear
+   41  pwd
+   42  ls /bin
+   43  env
+   44  clear
+   45  printenv USER
+   46  sudo su
+   47  clear
+   48  su mehmet
+   49  clear
+   50  pwd
+   51  cd
+   52  pwd
+   53  mkdir test && cd test
+   54  nano test.sh
+   55  cat test.sh 
+   56  echo "welcome scripting"
+   57  clear
+   58  ls -l
+   59  chmod +x test.sh 
+   60  ls -l
+   61  ./test.sh 
+   62  cd
+   63  pwd
+   64  ./test.sh 
+   65  ./test/test.sh 
+   66  cd /
+   67  ./home/techpro/test/test.sh 
+   68  clear
+   69  printenv PATH
+   70  export PATH=$PATH:/home/techpro/test/
+   71  printenv PATH
+   72  test.sh
+   73  TECHVAR=my value
+   74  echo $TECHVAR
+   75  history

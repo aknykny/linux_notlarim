@@ -1,0 +1,469 @@
+# Linux Notlarim:
+# PARAMETRESİZ KULLANIM
+
+ls                  # Salt olarak kullanıldığında aktif klasördeki dosya ve klasörleri listeler. 
+ls Masaüstü         # Bu komutla aktif klasördeki Masaüstü klasörünün içeriği görüntülenir.
+ls ..               # Bu komutla bir üst klasörün içeriği listelenir.
+ls ../*.htm         # Bu komutla bir üst klasördeki uzantısı htm olan dosyalar listelenir.
+ls ~                # Bu komutla home dizininizin içeriği görüntülenir.
+ls ../../../bin/    # Masaüstü dizininden üc dizin üste çıkıp bin klasörünün içerisindekileri listeler.
+ls deneme.htm       # Bu komutla aktif klasördeki deneme.htm dosyası listelenir.
+ls a??b?.txt        # 5 Harfli olan ilk harfi a 4. harfi v olan ve uzantısı txt olanları listeler 
+
+# PARAMETRELİ KULLANIM
+
+
+ls -l Masaüstü      # Masaüstündeki tüm dosyaları ayrıntılarıyla listeler.
+ls -a               # gizli dosya ve klasörleri de göstermesini sağlar. Linux'ta gizli dosya ve klasörler . (nokta) karakteriyle başlar. 
+# NOT: Linux, her yeni klasör oluşturulduğunda ilgili klasöre otomatik olarak . ve .. gizli klasörlerini yerleştirir. Bu klasörler tahmin edebileceğiniz gibi geçerli klasör ve bir üst klasörü temsil ederler.
+ls -R               # ilgili klasörü alt klasörleriyle beraber listelemesini sağlar.
+ls -lh              # -h parametresi -l ile kullanılınca anlam kazanır ve dosyaların (byte, KB, MB veya GB) vb. şekilde boyutlarını gösterir. Varsayılanda byte gösterir.
+
+#NOT: Parametre kullanırken birden fazla parametre kullanacaksanız parametreleri ard arda eklersiniz. Her parametre için farklı bir tire işareti kullanmazsınız ve parametrelerin sırası da önemli değildir.
+
+ls -laRh Belgeler   # Bu komut aktif klasördeki Belgeler klasöründeki tüm dosya ve klasörleri, gizliler dahil olmak üzere, ayrıntılı olarak, alt klasörler de dahil olmak üzere ve dosya ve klasörlerin boyut bilgilerini kolay okunur şekilde vererek listeler.
+
+cd klasör                    # cd, dizinler arasında geçiş yapmak istediğimizde kullanabileceğimiz bir komuttur. Yani aktif dizini değiştirir.
+cd /home/bekir/Belgeler      # Eğer klasörün başına / işaretini koyarsak Linux ilgili klasörü en üst klasörde arayacaktır, aksi takdirde aktif klasörde arayacaktır.
+cd Masaüstü/test             # Kullanıcı dizininde iken masaüstündeki test kalsörünü aktif dizin yapar.
+cd Masaüstü/deneme/..        # Deneme klasörüne girer sonra bir üst dizine gelerek Masaüstünü aktif dizin yapar.
+cd .                         # Bulunduğun kalsör de kalırsın
+
+# Nokta işareti aktif klasörü belirtir.
+# İki nokta bir üstü dizini ifade eder.
+cd "Masaüstü/Deneme Dosyası"  # Linux'ta bütün komutlarda geçerli olmak üzere bir komuta bir kelimeden fazla (yani boşluk içeren) bir argüman vermemiz gerekiyorsa ilgili metni çift tırnak arasına alırız.
+
+mkdir "Yeni Klasör"                   # Yeni Klaösr isminde dizin oluşturur.
+mkdir -p "Ana Klaösör/Alt Klasör"     # Alt Klasörlü Dosya Oluşturma
+
+
+rmdir "Yeni Klasör"                    # Belirtilen dizini siler.
+rmdir -p "Ana Klaösör/Alt Klasör"      # -p paramtertesi belirtilen yolu sondan başa doğru siler.
+rmdir *                                # Boş olan bu dizindeki tüm klasörleri sil.
+rmdir e?*                              # e ile başlayan ikinci harfi önemli olmayan tüm dosyaları sil. 
+
+#NOT: Bu komut klasörleri çöp kutusuna taşımadan, direkt olarak siler. Ayrıca silinecek dizinlerin boş olması gerekir.
+
+
+# YENİ DOSYA OLUŞTURMA
+touch dosya_adi                                 # Birleşik yazılırsa kullanılır.
+touch "Dosya Adı"                               # Kelimeler arası boşluk varsa kullanılır.
+
+touch "Dosya Adı 1" "Dosya Adı 2" "Dosya Adı 3" # Tek seferde birden fazla dosya oluşturulabilir.
+
+# DOSYA SİLME
+# rm silinecek_dosya_adı
+rm "Dosya Adı 2"                # Dosya Adı 2 Silindi.
+rm "Dosya Adı 2" "Dosya Adı 3"  # Dosya Adı 2 ve Dosya Adı 3 silindi
+rm -d "Dizin Adı"               # Belirtilen boş dizinleri siler.
+rm -r "Yeni Klasör"             # Alt dosyalar ile birlikte içi dolu olsun olmasın nekadar dosya varsa siler.
+
+05_Dosya+oluşturma+ve+silme.txt
+Displaying 05_Dosya+oluşturma+ve+silme.txt.
+
+# DOSYA KOPYALAMA
+cp kaynak hedef
+cp "Masaüstü/ornek_script.sh" /home/erdem/      # Masaüstündeki ornek_script.sh dosyasını erdem dizinine kopyaladı.
+
+# DOSYA TAŞIMA VE İSİM DEĞİŞTİRME
+# mv kaynak hedef
+mv "Masaüstü/ornek_script.sh" /home/erdem/      # Masaüstündeki ornek_script.sh dosyasını erdem dizinine taşıdı.
+
+# mv mevcut_dosya_adi yeni_dosya_adi 
+mv ornek_script.sh "Yeni Script Dosyam.sh"      # ornek_script.sh ismini Yeni Script Dosyam.sh olarak değiştirdi.
+# DOSYA KULLANICI SAHİPLİĞİNİN DEĞİŞTİRLMESİ
+#chown yeni_kullanıcı dosya_veya_klasör_adı
+sudo chown osman deneme.txt         # deneme dosyasının kullanısısı artık osman oldu.
+
+# DOSYA GRUP SAHİPLİĞİNİN DEĞİŞTİRLMESİ
+sudo chgrp ali deneme.txt           # deneme dosyasınıngurup sahipliğini aliye verdik.
+
+
+sudo chown -R ali klasr_adi           # Belirtilen klasör ve içindekilerin kullanısını ali yapıyor.
+sudo chgrp -R ali klasr_adi           # Belirtilen klasör ve içindekilerin gurup kullanıcısını ali yapıyor.
+Arşiv oluşturma ve açma işlemleri
+
+Arşivleme için tar komutu kullanılır. Sadece dosyaları bir araya toplar.
+Dikkat: Sıkıştırma yapmaz.
+
+Herhangi bir klasörde bulunan dosyaları ve klasörleri bir arşiv olarak toplamak için kullanılır.
+
+tar -c Arşiv dosyası oluştur demektir
+	-f parametresi dosya ismini belirteceğim demektir
+
+tar -cf yedek.tar file1 file2 file3 
+
+veya
+
+tar -cf yedek.tar *
+
+Bunun yerine * konularak tüm dosyaları arşive ekle denilebilir.
+
+Arşivden çıkarmak için
+
+tar -xf yedek.tar file1
+
+#Arşivden sadece 1 tane doyayı çıkarır ->file1
+
+tar -xf yedek.tar
+
+#Arşivdeki tüm dosyaları çıkarır
+
+#Eğer -v parametresi eklenirse çıkarılan veya eklenen dosyaları terminalde listeler
+
+tar -xvf yedek.tar
+
+-----------------------------A_Sıkıştırma Parametresi----------------------
+#Sıkıştırma için öncelikle hem arşivleme işlemine ihityacımız vardır
+# bu nedenle tar komutu ile işlem yapılır
+
+#Kullanımı aşağıdaki gibidir
+1-------------------Dosya arşivleme sıkıştırma
+	tar -zcvf arsiv1.tar arşivlenecek_dosya_veya_dosya_adları_boşluk bırakarak
+
+	z-> Sıkıştırma
+	c-> Archive 'in c sidir
+	v-> işlem sonrası verify/doğrulama yani listeleme yapar
+	f-> işlem yapılacak filename/dosya adı
+
+#Dikkat: Arşivleme sonrası dosyalar silinmez!
+
+
+
+2-------------------Dizin arşivleme sıkıştırma
+
+#Dizin altındaki tüm dosyaları alır arşivler ve sıkıştırır
+
+	tar -zcvf arsiv2.tar dizin_adı/
+
+Gereksiz dosyaları ve klasörleri boş veya dolu demeden silmek için 
+
+-> rm -r dizin_adı/
+
+-> rm -r dosya_adı1 dosya_adı2 ..
+
+
+
+
+-----------------------------B_Çözümleme Parametresi----------------------
+
+	tar -zxvf arsiv1.tar /dizin_adi (hem dosya hemde dizini çözümler)
+	burada x çözümle demektir
+
+
+
+08_2_Arşiv+Sıkıştırma.txt
+Displaying 08_2_Arşiv+Sıkıştırma.txt.
+Oops.. No translation found.
+
+# Komut geçmişini görme Silme İşlemleri
+
+history -> Komut geçmişini verir
+
+history -C parametresli hali ile geçmiş temizlerinir
+
+#Bu komutlar bir komutun sonucunu ekran yerine bir dosyaya yazma ve bir komuta argüman olarak bir metin dosyası vermektense başka bir komutun çıktısını vermeyi sağlar
+
+# > işareti (> işareti bir komutun sonucunu yeni oluşturulacak bir dosyaya yazmaya yarar.)
+ls > dosya.txt      # listeleme sonucu dosya.txt ye yazıldı. (Böyle bir dosya varsa içerisindeki sıfırlayıp sadece çıktının sonucunu girer.)
+ls -l >> dosya.txt  # Listeleme sonucunu dosya.txt nin sonuna ekledi.
+
+#Grafik arayüzden göstermeyi unutma
+
+#HATALARI YAZDIRMA
+#Hatalarıda dosyaya kaydet demek için > başına 2 yazılır !!!
+
+ls -z 2> dosya.txt      # z parametresi ls komutunda yok, çıkan hata mesajını dosya.txt içerisindekileri silip yazdık.
+ls -lz 2>> dosya.txt    # z parametresi ls komutunda yok, çıkan hata mesajını dosya.txt dosyanın sonuna yazdık.
+
+Hata yoksa dosyaya birşey yazmaz..!
+
+
+# pipe
+# | (pipe) işareti
+
+# | işaretiyle bir komutun çıkışını başka bir komuta argüman/parametre olarak verebiliriz. Bu sayede dosya oluşturma işleminden kurtulmuş oluruz. 
+# Çünkü | işareti bir komutun sonucunun sanki bir metin dosyasının içeriğiymiş algılanmasını sağlar. 
+#Aslında burada pipe işareti Javadaki gibi bir stream oluşturur.
+   
+  #Kaynak | Gelen veriyi işleyen kısım = Soldaki veriyi sağ tarafta işler !
+ls Klasör | grep dosya
+
+#Bu komut "ls Klasör" komutunun çıktısında "dosya" kelimesini arayacak ve bulduğu satırları listeleyecektir. (ls komutunun çıktısındaki her dosya/klasör ismi bir satır olarak algılanır.)
+
+
+
+- The `^` regular expression pattern specifies the start of a line. This can be used in grep to match the lines which start with the given string or pattern. 
+
+```bash
+grep "^li" techproed.txt 
+```
+
+- The $ regular expression pattern specifies the end of a line. This can be used in grep to match the lines which end with the given string or pattern.
+
+```bash
+grep "kernel.$" linux.txt
+```
+
+- We can also use `grep` command with | (pipe).
+
+```bash
+man pwd | grep "print"
+```
+
+```bash
+man find | grep -A5 "size"
+```
+
+```bash
+history | grep "find"
+```
+
+#Metin Dosyaları ve İşlemler
+
+
+
+---------------------cat komutu--------------------------
+
+#cat komutu bir ya da birden fazla text dosyasının içeriğini ekrana yazar
+cat siir1.txt cat siir2.txt
+
+#cat komutu dosyaya yazmaya yarar
+cat siir1.txt cat siir2.txt > siirler.txt
+
+#cat komutu dosya oluşturup içine birşeyler yazar
+cat > mesaj
+linux
+bash
+scripting
+çok
+zevkli !!
+
+ctrl+D #Kaydedip çıkar !
+
+cat mesaj #Ekrana dosya içeriğini yazar.
+
+Örnek:
+#cat komutunun sonucunu stream yap ve bunun içinde er geçen satırları ekrana getir
+cat siir.txt | grep er
+
+#more komutu sayfa sayfa ekrana getirir ki daha okunaklı olsun
+
+#/var/log/syslog burada sistemin kayıtlarını loglarını tutar
+cat /var/log/syslog
+
+cat /var/log/syslog |grep Over| cut -c 8-15
+
+#-E parametresi terminale sığmayan text çıktılarında satır sonunu belirtir. 
+Satırın sonuna $ işareti koyar.
+cat -E /var/log/syslog |grep "Over"
+
+
+
+
+---------------------tac komutu--------------------------
+cat komutunu tersi bir sırada metini ekrana yazar
+
+cat siir.txt | grep er
+
+tac siir.txt | grep er
+
+---------------------more komutu--------------------------
+
+#space tuşuna basarak sayfa geçilebilir
+more /var/log/syslog
+
+
+---------------------head komutu--------------------------
+
+#head komutu varsayılan olarak 10 satırı ekrana basar
+head -n 3 siir.txt # sadece ilk 3 satırı ekrana basar
+
+---------------------tail komutu--------------------------
+
+#tail komutu, head komutunun birebir zıttıdır. 
+#Sondan 3 satırı ekrana basar.
+tail -n 3 siir.txt
+
+Binlerce satır log okumak yerine sadece 3 satrır ekrana yazar, çok işe yarar
+tail -n 3 /var/log/syslog
+
+tail -f /var/log/syslog
+
+#f parametresi anlık olarak değişiklikleri ekrana yazabilir
+#Çok yararlıdır.
+
+
+---------------------grep komutu--------------------------
+
+#grep komutu Metin dosyasında herhangi bir metini aramak ve bulunana satırları ekrana yazmak için kullanılır.
+grep "er" siir.txt
+
+Birden fazla dosyadanda arama yapılabilir.
+grep "er" siir1.txt siir2.txt
+
+Aranan metinin ayrı ayrı hangi dosyada geçtiğini belirtir.
+
+nano dosya düzenleyici
+
+İstediğimiz değişiklikleri yaptıktan sonra
+
+nano ekranında
+
+	isimler.txt dosyasını düzenle
+
+	ctrl + X tuşlarına basarsak kaydetmek isteyip/istemediğimizi sorar
+
+Y basılır veya E tuşuna basılır
+Enter
+
+Eğer dosya ismini farklı kaydedeceksek
+
+	ctrl + O basılır ve isim girilir/düzenlenir
+
+	mesela sayılar.txt olsun
+
+Y veya E ye basılıarak kaydedilir
+
+ll ile dosyalar listelenir
+
+Örnek: bir log dosyası açılarak herhangi bir kelime aranacaksa
+
+ctrl + W basılır
+
+bir sonraki aynı kelimeye gitmek için alt + W tuşlarına basılır
+
+
+Kullanıcı İşlemleri--------------------------------------------------------------
+
+#Bazı komutlar kullanıcı yetkisi gerektirmektedir. Bunu sağlamak için;
+sudo su #su->super user olarak, do-> yap !
+
+Kullanıcı ekleme işlemi
+adduser ali
+
+parola
+tam isim
+Oda no..
+..
+..
+#Enter varsayılanda evet demektir.
+
+GUI 'den kullanıcıyı göster..
+
+Kullanıcı silme işlemi
+deluser ali #Sadece kullanıcıyı siler, home dizinini silmez, yani kullanıcı dosyalarını silmez
+		#Bunun bir amacıda güvenliği sağlamaktır. Dosyaları erişilebilir, kalmaktadır.
+
+GUI 'den kullanıcı dizinini göster..
+man deluser #Komutun kullanımını gösterir. Burada --remove-home parametresi vardır.
+
+deluser --remove-home ali
+
+Kullanıcı şifresini değiştirme işlemi
+passwd ali
+Yeni parolası: 2
+Yeni parolasını tekrar girin: 2
+
+Kullanıcıyı Kilitlemek ve Açmak
+passwd --help
+-l parametresi kilitler.
+passwd -l ali
+
+-u parametresi kilidi açar.
+passwd -u ali
+
+
+
+
+Tüm Kullanıcıları görebilmek için;
+
+cat /etc/passwd #Dosyası kullanılır
+
+#- Her sütun : ile ayrılır
+1- Birinci sütun: Kullanıcı adı
+2- İkinci sütun: Eskiden parola hashleri tutulurdu şimdi başka bir dosyaya taşıındı(1985 gibi taşındı)
+3- Üçüncü sütun: Kullanıcı id 'si
+4- Dördüncü sütun: Grup id 'si
+5- :Kullanıcı Full -name ve diğer bilgileri
+6- :Kullanıcının kendine ait dizini(root için istisnai bir dosyadır)
+7- :Kullanıncının varsayılan shell erişim programı
+
+Neden bu kadar çok kullanıcı vardır denilebilir?
+
+Aslında burada hepsi gerçek birer kullanıcı değildir. Sistemdeki uygulamaların bazı dosya-dizin ve servislere
+erişebilmesi için oluşturulan sanal kullanıcılardır.
+
+Login erişimnden de anlaşılacağı üzere login erişimleri de yoktur.
+
+
+Kullanıcı Parolalarını okumak için;
+
+cat /etc/shadow
+
+Normal kullanıcı erişemez, sadece sistem yöneticisi yetisi sahibi olan root kullanıcısı erişebilir.
+
+
+ls -al shadow --> Dersek yetkileri görebiliriz
+
+#KullancıAdı:HashlenmişParola şeklinde bir tablo gelir!
+sudo cat /etc/shadow
+
+$ ->Parola kendi içinde karakteri ile ayrılır
+
+İlk kısım hash algoritması ifade eder - $6$ -> sha256
+İkinci kısım salt -> DUCHEEFDSX55
+Üçüncü kısım -> hashlenmiş parola
+Dördüncü kısım -> Sayı - Hangi gün değiştiğini ifade eder
+Beşinci kısım -> Parola süresini ve uyarı süresini ifade eder
+Sonraki alanlar sadece reservedir, şimdilik bir amacı yoktur.
+
+Diğer kullancıların parolası yok ki hash bilgileri olsun!
+
+root kullanıcısının parola özelliği de-aktif edilmiştir ve bu yüzden hashed-pasword yerine sadece '!' vardır.
+
+Tüm Kullanıcıları görebilmek için;
+
+cat /etc/passwd #Dosyası kullanılır
+
+#- Her sütun : ile ayrılır
+1- Birinci sütun: Kullanıcı adı
+2- İkinci sütun: Eskiden parola hashleri tutulurdu şimdi başka bir dosyaya taşıındı(1985 gibi taşındı)
+3- Üçüncü sütun: Kullanıcı id 'si
+4- Dördüncü sütun: Grup id 'si
+5- :Kullanıcı Full -name ve diğer bilgileri
+6- :Kullanıcının kendine ait dizini(root için istisnai bir dosyadır)
+7- :Kullanıncının varsayılan shell erişim programı
+
+Neden bu kadar çok kullanıcı vardır denilebilir?
+
+Aslında burada hepsi gerçek birer kullanıcı değildir. Sistemdeki uygulamaların bazı dosya-dizin ve servislere
+erişebilmesi için oluşturulan sanal kullanıcılardır.
+
+Login erişimnden de anlaşılacağı üzere login erişimleri de yoktur.
+
+
+Kullanıcı Parolalarını okumak için;
+
+cat /etc/shadow
+
+Normal kullanıcı erişemez, sadece sistem yöneticisi yetisi sahibi olan root kullanıcısı erişebilir.
+
+
+ls -al shadow --> Dersek yetkileri görebiliriz
+
+#KullancıAdı:HashlenmişParola şeklinde bir tablo gelir!
+sudo cat /etc/shadow
+
+$ ->Parola kendi içinde karakteri ile ayrılır
+
+İlk kısım hash algoritması ifade eder - $6$ -> sha256
+İkinci kısım salt -> DUCHEEFDSX55
+Üçüncü kısım -> hashlenmiş parola
+Dördüncü kısım -> Sayı - Hangi gün değiştiğini ifade eder
+Beşinci kısım -> Parola süresini ve uyarı süresini ifade eder
+Sonraki alanlar sadece reservedir, şimdilik bir amacı yoktur.
+
+Diğer kullancıların parolası yok ki hash olsun!
+
+root kullanıcısının parola özelliği de-aktif edilmiştir ve sadece ! vardır.

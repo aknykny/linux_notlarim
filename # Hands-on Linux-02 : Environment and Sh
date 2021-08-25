@@ -1,0 +1,151 @@
+# Hands-on Linux-02 : Environment and Shell Variables
+
+
+## Part 1 - Environment Variables vs. Shell Variables
+​
+- Examine the Difference between "env" and "printenv" commands
+  
+- Usage notes
+```txt
+Only one name argument can be specified.
+printenv SOMENAME is equivalent to echo $SOMENAME for exported variables.
+printenv without any arguments is functionally equivalent to `env` without any arguments
+
+Exit values
+0
+Successful completion
+1
+Failure due to one of the following:
+More than one environment variable was specified
+An option was specified (printenv has no options)
+```​
+
+- To understand the diferences apply the all lines below one by one   
+
+```bash
+env
+printenv
+printenv HOME
+echo $HOME
+env HOME
+```
+​
+- Understanding the shell variable. The `set` command is used for printing the SHELL variables
+​
+```bash
+TECHPRO=education
+env
+set
+set | grep TECHPRO
+echo $TECHPRO
+```
+​
+- Understanding the environment variable. Use export command.
+​
+```bash
+export PRO=TECHPRO
+env
+```
+​
+- Difference between shell and environment variables. Create a user, name it "mike", switch to mike, check the environment and shell variables.
+​
+```bash
+export PRO=TECHPRO
+sudo su
+useradd mike # useradd is legacy command to create a user then it does not support to create the home-directory for the user etc.
+passwd mike # give mike any password.
+exit
+su mike
+env | grep PRO
+set | grep TECHPRO
+```
+​
+- Change the environment variable value.
+​
+```bash
+export PRO=linux
+env
+export PRO=script
+env
+```
+​
+- Remove the environment variable with unset command.
+​
+```bash
+export PRO=techproed
+env | grep PRO
+unset PRO
+env | grep PRO
+```
+​
+## Part 2 - Path Variable
+​
+- PATH variable.
+​
+```bash
+printenv PATH
+cd /bin
+ls ca*    # see the cat command.
+```
+​
+- Add a path to PATH variable for running a script FROM ANY WORKING DIRECTORY
+​
+```bash
+cd
+mkdir test && cd test
+nano test.sh
+# copy and paste the code-echo "hello world"- in test.sh
+chmod +x test.sh
+./test.sh
+cd    # change directory to techpro's home directory
+./test.sh    # it doesnt work. 
+./test/test.sh
+printenv PATH
+cd test
+pwd
+export PATH=$PATH:/home/techpro/test
+printenv PATH
+cd
+test.sh
+cd /
+test.sh
+```
+​
+- Using the environment variable in the script.
+​
+```bash
+cd test
+export TECHPRO=env.var
+PRO=shell.var
+cd test
+nano test1.sh
+# copy and paste the code-echo "normally we should see env. variable $TECHPRO but probably we can't see the shell variable $PRO "
+chmod +x test1.sh
+./test1.sh
+```
+​
+## Part 3 - Quoting with Variables.
+​
+- Double Quotes.
+​
+```bash
+TECHVAR=my value
+echo $TECHVAR
+TECHVAR="my value"
+echo $TECHVAR
+MYNAME=ahmet
+TECHVAR="my name is $MYNAME"
+echo $TECHVAR
+MYNAME="ahmet"
+TECHVAR="hello $MYNAME"
+echo $TECHVAR
+TECHVAR="hello \$MYNAME"
+echo $TECHVAR
+```
+​
+- Single Quotes.
+​
+```bash
+echo '$SHELL'
+echo 'My\$SHELL'
+```
