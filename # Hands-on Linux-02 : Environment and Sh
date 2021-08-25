@@ -47,7 +47,7 @@ export PRO=TECHPRO
 env
 ```
 ​
-- Difference between shell and environment variables. Create a user, name it "mike", switch to mike, check the environment and shell variables.
+- Difference between shell and environment variables. 
 ​
 ```bash
 export PRO=TECHPRO
